@@ -17,13 +17,29 @@ class SoccerV4 extends Client
     }
 
     /**
+	 * Assing parameters form the original class
+	 *
+	 * @return object
+	 */
+    public function assignParameters($class) {
+		$class->language($this->language);
+		$class->offset($this->offset);
+		$class->limit($this->limit);
+		$class->league($this->leagueGroup);
+		$class->domain($this->domain);
+
+		return $class;
+
+	}
+
+    /**
      * Create a new Competition instance.
      *
      * @return \AxlMedia\SportradarSdk\Soccer\V4\Competition
      */
     public function competitions()
     {
-        return new Soccer\V4\Competition;
+        return $this->assignParameters(new Soccer\V4\Competition);
     }
 
     /**
@@ -32,8 +48,8 @@ class SoccerV4 extends Client
      * @return \AxlMedia\SportradarSdk\Soccer\V4\Competitor
      */
     public function competitors()
-    {
-        return new Soccer\V4\Competitor;
+	{
+		return $this->assignParameters(new Soccer\V4\Competitor);
     }
 
     /**
@@ -42,8 +58,8 @@ class SoccerV4 extends Client
      * @return \AxlMedia\SportradarSdk\Soccer\V4\Player
      */
     public static function players()
-    {
-        return new Soccer\V4\Player;
+	{
+		return $this->assignParameters(new Soccer\V4\Player);
     }
 
     /**
@@ -53,7 +69,7 @@ class SoccerV4 extends Client
      */
     public function seasons()
     {
-        return new Soccer\V4\Season;
+		return $this->assignParameters(new Soccer\V4\Season);
     }
 
     /**
@@ -63,6 +79,6 @@ class SoccerV4 extends Client
      */
     public static function sportEvents()
     {
-        return new Soccer\V4\SportEvent;
+		return self::assignParameters(new Soccer\V4\SportEvent);
     }
 }
